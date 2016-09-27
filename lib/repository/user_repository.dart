@@ -22,8 +22,10 @@ class UserRepository {
   User mapRowToUser(pg.Row row) {
     return new User()
       ..id = row.id
-      ..firstName = row.first_name
-      ..lastName = row.last_name
-      ..email = row.email;
+      ..firstName = row.firstName
+      ..lastName = row.lastName
+      ..email = row.email
+      ..account = row.account
+      ..password = row.password;
   }
 }

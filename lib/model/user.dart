@@ -3,4 +3,6 @@ class User {
   String firstName;
   String lastName;
   String email;
+  String account;
+  String password;
 }
