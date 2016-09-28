@@ -5,18 +5,18 @@ import 'package:postgresql/postgresql.dart' as pg;
 import '../config/db_connection.dart';
 import '../model/user.dart';
 
-class UserRepository {
+class User_Product_Register_Repository {
   DbConnection connection;
 
-  UserRepository(this.connection);
+  User_Product_Register_Repository(this.connection);
 
   Future<User> find(int id) async {
-    User user = (await connection.query('SELECT * FROM "user" WHERE id = @id', {'id': id})).map(mapRowToUser).first;
+    User user = (await connection.query('SELECT * FROM "user" WHERE id = @id AND user_type=1', {'id': id})).map(mapRowToUser).first;
     return user;
   }
 
   Future<List<User>> findAll() async {
-    return (await connection.query('SELECT * FROM "user"')).map(mapRowToUser);
+    return (await connection.query('SELECT * FROM "user" WHERE user_type=1')).map(mapRowToUser);
   }
 
   User mapRowToUser(pg.Row row) {
