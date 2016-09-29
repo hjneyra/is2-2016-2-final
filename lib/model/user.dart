@@ -7,3 +7,5 @@ class User {
   String password;
   int user_type;
 }
+
+/*Cambios*/
