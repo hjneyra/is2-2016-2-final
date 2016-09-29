@@ -8,4 +8,3 @@ class User {
   int user_type;
 }
 
-/*Cambios*/
