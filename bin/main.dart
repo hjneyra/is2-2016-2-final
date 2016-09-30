@@ -5,6 +5,9 @@ import 'package:rpc/rpc.dart';
 import 'package:logistic_app/config/injector.dart';
 import 'package:logistic_app/rest/user_rest.dart';
 import 'package:logistic_app/rest/hello_rest.dart';
+import 'package:logistic_app/rest/persona_rest.dart';
+import 'package:logistic_app/rest/proveedor_rest.dart';
+
 
 final ApiServer _apiServer = new ApiServer();
 
@@ -58,6 +61,9 @@ Future configureHttpServer(HttpRequest request) async {
 main() async {
   _apiServer.addApi(injector.get(UserRest));
   _apiServer.addApi(injector.get(HelloRest));
+  _apiServer.addApi(injector.get(PersonaRest));
+  _apiServer.addApi(injector.get(ProveedorRest));
+
   HttpServer server = await HttpServer.bind(InternetAddress.ANY_IP_V4, 9090);
 //  server.listen(_apiServer.httpRequestHandler);
   server.listen(configureHttpServer);
