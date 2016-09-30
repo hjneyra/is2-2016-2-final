@@ -15,8 +15,15 @@ class ProveedorRest {
     return proveedorService.get(int.parse(id));
   }
 
+  @ApiMethod(path: 'proveedor/name/{name}')
+  Future<Proveedor> get_nameProveedor(String name) {
+    return proveedorService.get_name(name);
+  }
+
+
   @ApiMethod(path: 'all')
   Future<List<Proveedor>> getProveedores() {
     return proveedorService.getAll();
   }
+
 }

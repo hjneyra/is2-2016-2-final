@@ -10,6 +10,10 @@ class ProveedorService {
     return proveedorRepository.find(id);
   }
 
+  Future<Proveedor> get_name(String name) {
+    return proveedorRepository.find_name(name);
+  }
+
   Future<List<Proveedor>> getAll() {
     return proveedorRepository.findAll();
   }

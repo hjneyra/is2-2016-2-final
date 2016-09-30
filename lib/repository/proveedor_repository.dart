@@ -15,8 +15,13 @@ class ProveedorRepository {
     return proveedor;
   }
 
+  Future<Proveedor> find_name(String name) async {
+    Proveedor proveedor = (await connection.query('SELECT * FROM "proveedor" WHERE name_proveedor = @name', {'name': name})).map(mapRowToProveedor).first;
+    return proveedor;
+  }
+
   Future<List<Proveedor>> findAll() async {
-    return (await connection.query('SELECT * FROM "proveedor"')).map(mapRowToProveedor);
+    return (await connection.query('SELECT * FROM "proveedor" ')).map(mapRowToProveedor);
   }
 
   Proveedor mapRowToProveedor(pg.Row row) {
