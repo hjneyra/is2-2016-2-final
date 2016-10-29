@@ -24,11 +24,34 @@ class DbConnection {
   }
 
   Future<List<pg.Row>> query(String sql, [params]) async {
+    pg.Connection conn = null;
     try {
-      pg.Connection conn = await pg.connect(URI);
+      conn = await pg.connect(URI);
       return await conn.query(sql, params).toList();
     } catch (e) {
       print(e);
+    } finally {
+      if (conn != null) {
+        conn.close();
+      }
+    }
+  }
+
+  Future<Null> runInTransaction(String sql, [params]) async {
+    pg.Connection conn = null;
+    try {
+      conn = await pg.connect(URI);
+      conn.runInTransaction(() {
+        return conn.query(sql, params);
+      });
+      List<pg.Row> result = await conn.query(sql, params).toList();
+      return result;
+    } catch (e) {
+      print(e);
+    } finally {
+      if (conn != null) {
+        conn.close();
+      }
     }
   }
 }

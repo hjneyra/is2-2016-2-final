@@ -18,4 +18,10 @@ class UserRest {
   Future<List<User>> getUsers() {
     return userService.getAll();
   }
+
+  @ApiMethod(path: 'users', method: "PUT")
+  Future<User> updateUser(User user) {
+    return userService.save(user);
+  }
+
 }

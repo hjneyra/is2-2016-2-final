@@ -13,4 +13,14 @@ class UserService {
   Future<List<User>> getAll() {
     return userRepository.findAll();
   }
+
+  Future<User> save(User user) async {
+    if (user.id == null) {
+      await userRepository.insert(user);
+    } else {
+      await userRepository.update(user);
+    }
+    return userRepository.find(user.id);
+  }
+
 }
